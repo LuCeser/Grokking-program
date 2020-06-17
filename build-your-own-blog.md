@@ -244,3 +244,53 @@ nginx: [emerg] mkdir() "/var/cache/nginx/proxy_temp" failed (13: Permission deni
 mkdir -p /var/cache/nginx
 chown nginx:nginx /var/cache/nginx
 ```
+
+这样nginx就能检查通过了。
+
+接下来为nginx创建快捷启动方式
+
+```bash
+vim /etc/systemd/system/nginx.service
+```
+
+把下面的文本拷贝到刚才打开的`/etc/systemd/system/nginx.service`里去
+
+```
+[Unit]
+Description=nginx - high performance web server
+Documentation=https://nginx.org/en/docs/
+After=network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t -c /etc/nginx/nginx.conf
+ExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+```
+
+设置nginx开机时启动
+
+```bash
+systemctl enable nginx
+```
+
+启动nginx，如果成功的话运行这条指令你什么输出都看不到
+
+```bash
+systemctl start nginx
+```
+
+可以运行以下指令查看nginx运行状态
+
+```bash
+[root@vultr ~]# systemctl status nginx
+● nginx.service - nginx - high performance web server
+```
+
+至此，nginx安装完成。
