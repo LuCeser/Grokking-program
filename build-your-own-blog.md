@@ -247,6 +247,8 @@ chown nginx:nginx /var/cache/nginx
 
 这样nginx就能检查通过了。
 
+## 创建快捷启动方式
+
 接下来为nginx创建快捷启动方式
 
 ```bash
@@ -294,6 +296,8 @@ systemctl start nginx
 ```
 
 nginx运行起来了，再做一点其它的配置。
+
+## 修改配置
 
 nginx默认会在/etc/nginx下创建备份的.default文件，运行以下命令删除(虽然我还不清楚这些文件的作用)
 
