@@ -293,4 +293,58 @@ systemctl start nginx
 ● nginx.service - nginx - high performance web server
 ```
 
-至此，nginx安装完成。
+nginx运行起来了，再做一点其它的配置。
+
+nginx默认会在/etc/nginx下创建备份的.default文件，运行以下命令删除(虽然我还不清楚这些文件的作用)
+
+```bash
+rm /etc/nginx/*.default
+```
+
+想要用vim编辑nginx配置文件做语法高亮的话可以将配置文件放到.vim下，注意你的解压出来的nginx路径
+
+```bash
+mkdir /root/.vim/
+cp -r ~/nginx-1.15.7/contrib/vim/* /root/.vim/
+```
+
+创建一些必要的目录
+
+```bash
+mkdir /etc/nginx/{conf.d,snippets,sites-available,sites-enabled}
+```
+
+修改nginx日志文件目录权限与所属用户，这是在当初运行./configure的时候指定的
+
+```bash
+chmod 640 /var/log/nginx/*
+chown nginx:adm /var/log/nginx/access.log /var/log/nginx/error.log
+```
+
+创建日志配置
+
+```bash
+vim /etc/logrotate.d/nginx
+```
+
+把下面的文本拷贝进去
+
+```
+/var/log/nginx/*.log {
+    daily
+    missingok
+    rotate 52
+    compress
+    delaycompress
+    notifempty
+    create 640 nginx adm
+    sharedscripts
+    postrotate
+        if [ -f /var/run/nginx.pid ]; then
+            kill -USR1 `cat /var/run/nginx.pid`
+        fi
+    endscript
+}
+```
+
+至此nginx所有安装配置完成。
