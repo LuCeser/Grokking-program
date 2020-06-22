@@ -1,3 +1,4 @@
 * [什么是ARTS](arts/)
 * [2020M6W2](arts/ARTS_2020M6W2.md)
 * [2020M6W3](arts/ARTS_2020M6W3.md)
+* [2020M6W4](arts/ARTS_2020M6W4.md)
