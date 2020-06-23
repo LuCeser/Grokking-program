@@ -1,0 +1,3 @@
+使用Spring Data Redis Repository简化redis使用
+
+Redis是大家非常熟悉的
