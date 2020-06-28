@@ -19,3 +19,7 @@
 [构建测试体系](/about-test/) 写一些关于如何利用单元测试保证项目质量的实践
 
 还有就是首页了，没想好怎么分类的就先放到首页。
+
+# 联系我
+
+如果有任何想法或建议，请提交到我的github的repo https://github.com/LuCeser/grokking-program/ ，或者发邮件给我fortunezlu@gmail.com
