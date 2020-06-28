@@ -352,3 +352,41 @@ vim /etc/logrotate.d/nginx
 ```
 
 至此nginx所有安装配置完成。
+
+# 使用`docsify`构建文档
+
+[docsify](https://docsify.js.org/)是一个快速生成文档的利器，使用`docsify`搭建博客而不是`hexo`或者其他博客框架其实就是为了他的轻量级，让我们的关注点放在如何写文章上面。
+
+`docsify`是nodejs所写的，因此需要安装一下nodejs环境，可以通过前往https://nodejs.org/zh-cn/选择不同平台安装。
+
+安装完成之后执行指令，就能看到nodejs版本了。
+
+```bash
+➜  ~ node -v
+v13.8.0
+```
+
+接下来建一个空目录，比如我给博客起的名字是*grokking-program*。
+
+进入到目录后，执行
+
+```bash
+docsify init .
+```
+
+目录下会自动生成`index.html`、`README.md`大概三个文件，这就说明博客的骨架已经搭建好了。
+
+然后执行
+
+```
+(base) ➜  grokking-program git:(master) ✗ docsify serve .
+
+Serving /Documents/grokking-program now.
+Listening at http://localhost:3000
+```
+
+就可以在本地流量器访问`http://localhost:3000`打开了，实时查看最终效果。
+
+![docsify_blog](images/docsify_blog.jpg)
+
+怎么使用`docsify`组织博客不在本篇文章讨论范围之内，可以查阅`docsify`官方文档。
