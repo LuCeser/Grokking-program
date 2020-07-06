@@ -22,4 +22,4 @@
 
 # 联系我
 
-如果有任何想法或建议，请提交到我的github的repo https://github.com/LuCeser/grokking-program/ ，或者发邮件给我fortunezlu@gmail.com
+如果有任何想法或建议，请提交到我的github的repo，或者发邮件给我fortunezlu@gmail.com
