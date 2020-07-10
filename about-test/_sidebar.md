@@ -1,2 +1,2 @@
-* [为什么要构建测试体系](about-test/)
-* [编写Controller测试](about-test/build-controller-test.md)
+* [1. 别拿测试不当代码](about-test/why-should-write-test.md)
+
