@@ -1,4 +1,5 @@
 
+* [写文章也可以小步迭代，快速交付](alige-for-write.md)
 * [番茄工作法实践](pomodoro-in-practice.md)
 * [为什么我开始写设计文档](why-begin-write-docs.md)
 * [在你自己的服务器上搭建博客](build-your-own-blog.md)
