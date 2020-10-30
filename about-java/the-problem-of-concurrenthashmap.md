@@ -94,13 +94,13 @@ TimeUnit.SECONDS.sleep(1);
 
 下图所展现的就是CPU与其缓存以及内存之间的关系。每个CPU核心都有独享的Cache的缓存
 
-![多线程可见性 (1).png](images/多线程可见性 (1).png)
+![多线程可见性](images/多线程可见性-1.png)
 
 > 此处简化了CPU缓存架构，一般我们的CPU有3级缓存，就是一般我们听到的L1 Cache、L2 Cache和L3 Cache。其中L1 Cache和L2 Cache是CPU独享的，L3 Cache在逻辑上是共享模式。
 
 而我们的线程**可能**会跑在不同的CPU核心上，此时Thread1将用户注册信息写入到内存中，但Thread2还是从自己的CPU缓存中获取的数据，因此对于Thread2来说看到的注册信息里没有*张三*，这就是**可见性问题**。
 
-![多线程可见性 (2).png](images/多线程可见性 (2).png)
+![多线程可见性2](images/多线程可见性-2.png)
 
 
 ### 原子性问题
@@ -116,11 +116,11 @@ TimeUnit.SECONDS.sleep(1);
 
 CPU在执行任务时
 
-![用户注册并发1 (3).png](images/用户注册并发1 (3).png)
+![用户注册并发1 (3).png](images/用户注册并发-1.png)
 
 而实际上我们希望*判断用户是否注册*，*注册用户*这两步操作同时进行，如下图所示，Thread1在执行`register(User user)`方法时会将两个操作放在一起执行完，这与数据库事务的原子性理解差不多。
 
-![用户注册并发1 (2).png](images/用户注册并发1 (2).png)
+![用户注册并发1 (2).png](images/用户注册并发-2.png)
 
 
 ### 有序性问题
@@ -133,10 +133,41 @@ CPU在执行任务时
 
 说回到`ConcurrentHashMap`，它所说的线程安全到底指的是什么呢？
 
-它所保证的是`put()`与`get()`操作是线程安全的。
+它所保证的是`put()`与`get()`操作是线程安全的，上一节所说的**可见性问题**可以被解决。
 
+在我们上文的例子中之所以出现线程安全问题，原因在于`register(User user)`这个方法中有复合操作，所以会有**原子性问题**。
 
-## 参考资料
+了解并发问题的根源之后，才能真正用好并发工具类，发挥它的真正威力。我们改造一下代码：
+
+```java
+class UserService {
+	
+	private Map<String, User> userMap = new ConcurrentHashMap();
+	
+	boolean register(User user) {
+		User hasMapped = userMap.putIfAbsent(user.getUsername, user);
+		if (hasMapped != null) {
+			log.info("用户已存在");
+			return false;
+		} else {
+            log.info("用户注册成功, {}, {}", user.getUsername(), user.getAge());			
+			return true;
+		}
+	}
+}
+```
+
+这里我们使用了`Map`提供的`putIfAbsent`接口，其含义是如果key已经存在则返回存储的对象，否则返回`null`。
+
+`putIfAbsent`接口定义的时候不是线程安全的，但`ConcurrentHashMap`在实现的时候将这个方法实现为线程安全。在这个场景中如果不使用`putIfAbsent`就要对`register(User user)`方法加锁，对于性能的影响更大。
+
+## 总结
+
+`ConcurrentHashMap`因为一直以来都号称是线程安全的，因此对于其使用常常会陷入误区。要发挥出并发工具类的真正威力，一定要了解并发问题的本质，而并发问题的本质又与硬件知识息息相关。
+
+受水平所限，本文只是从一个角度解释了`ConcurrentHashMap`引起的并发问题，并未深入分析`ConcurrentHashMap`的实现以及局限性。
+
+### 参考资料
 
 - [极客时间：使用了并发工具类库，线程安全就高枕无忧了吗？](https://time.geekbang.org/column/article/209494)
 - [极客时间：安全性、活跃性以及性能问题](https://time.geekbang.org/column/article/85702)
