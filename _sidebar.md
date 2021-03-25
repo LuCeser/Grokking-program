@@ -6,3 +6,4 @@
 * [使用HSTS防范中间人攻击](mitm.md)
 * [程序员的英语](the-english-for-programmer.md)
 * [向贫血模型宣战](fight-with-anemia-model.md)
+* [数据去哪了？：从一次生产事故聊聊并发编程原子性问题](where-is-my-data-about-concurrency.md)
