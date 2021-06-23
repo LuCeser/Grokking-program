@@ -14,7 +14,7 @@
 
 以下做法可能会引起复杂度提升
 
-1. Pass-through methods
+1. [Pass-through methods](reading/pass-through-methods.md)
 2. Pass-through variables
 
 一个耦合程度高的系统就是复杂性高的，因为每次修改都非常困难，所以**领域驱动设计**这种方法就是为了设计出高度内聚的模型。
