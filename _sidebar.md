@@ -1,3 +1,4 @@
+* [把ChatGPT作为方法](ChatGPT-as-method.md)
 * [使用JMH框架进行性能基准测试](how-to-use-jmh.md)
 * [数据去哪了？：从一次生产事故聊聊并发编程原子性问题](where-is-my-data-about-concurrency.md)
 * [使用HSTS防范中间人攻击](mitm.md)
