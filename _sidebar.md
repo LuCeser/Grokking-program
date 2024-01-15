@@ -1,3 +1,4 @@
+* [iOS捷径 + github action 构建无压力记录工作流](sync-knowledge-with-ios-and-github.md)
 * [把ChatGPT作为方法](ChatGPT-as-method.md)
 * [使用JMH框架进行性能基准测试](how-to-use-jmh.md)
 * [数据去哪了？：从一次生产事故聊聊并发编程原子性问题](where-is-my-data-about-concurrency.md)
@@ -8,3 +9,4 @@
 * [在你自己的服务器上搭建博客](build-your-own-blog.md)
 * [程序员的英语](the-english-for-programmer.md)
 * [向贫血模型宣战](fight-with-anemia-model.md)
+
