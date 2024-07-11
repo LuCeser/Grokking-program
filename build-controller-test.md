@@ -1,3 +1,10 @@
+---
+title: 编写Controller层测试
+create: 2024-07-24 18:00:45
+---
+
+
+
 # spring-test构建Java测试体系(1)
 
 对于使用Spring MVC构建的Java Web应用，Controller是属于最前面一层的，本文将介绍如何针对Controller编写单元测试。
