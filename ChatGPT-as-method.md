@@ -1,5 +1,6 @@
 ---
 title: 把ChatGPT作为方法
+toc: true
 date: 2023-08-04 15:04:28
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: iOS捷径 + github action 构建无压力记录工作流
+toc: true
 date: 2024-01-12 18:00:45
 tags:
   - 效率

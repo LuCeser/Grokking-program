@@ -1,5 +1,6 @@
 ---
 title: 使用jmh进行性能基准测试
+toc: true
 date: 2021-09-30 18:04:28
 tags:
   - Java
