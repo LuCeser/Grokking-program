@@ -395,6 +395,6 @@ Listening at http://localhost:3000
 
 就可以在本地流量器访问`http://localhost:3000`打开了，实时查看最终效果。
 
-![docsify_blog](images/docsify_blog.jpg)
+![docsify_blog](https://noteedit.oss-cn-beijing.aliyuncs.com/picGo/docsify_blog.jpg)
 
 怎么使用`docsify`组织博客不在本篇文章讨论范围之内，可以查阅`docsify`官方文档。

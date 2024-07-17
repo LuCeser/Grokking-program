@@ -102,13 +102,15 @@ TimeUnit.SECONDS.sleep(1);
 
 下图所展现的就是CPU与其缓存以及内存之间的关系。每个CPU核心都有独享的Cache的缓存
 
-![多线程可见性](images/多线程可见性-1.png)
+![多线程可见性](https://noteedit.oss-cn-beijing.aliyuncs.com/picGo/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%AF%E8%A7%81%E6%80%A7-1.png)
+
+
 
 > 此处简化了CPU缓存架构，一般我们的CPU有3级缓存，就是一般我们听到的L1 Cache、L2 Cache和L3 Cache。其中L1 Cache和L2 Cache是CPU独享的，L3 Cache在逻辑上是共享模式。
 
 而我们的线程**可能**会跑在不同的CPU核心上，此时Thread1将用户注册信息写入到内存中，但Thread2还是从自己的CPU缓存中获取的数据，因此对于Thread2来说看到的注册信息里没有*张三*，这就是**可见性问题**。
 
-![多线程可见性2](images/多线程可见性-2.png)
+![多线程可见性2](https://noteedit.oss-cn-beijing.aliyuncs.com/picGo/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%AF%E8%A7%81%E6%80%A7-2.png)
 
 
 ### 原子性问题
@@ -124,11 +126,11 @@ TimeUnit.SECONDS.sleep(1);
 
 CPU在执行任务时
 
-![用户注册并发1 (3).png](images/用户注册并发-1.png)
+![用户注册并发1](https://noteedit.oss-cn-beijing.aliyuncs.com/picGo/%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E5%B9%B6%E5%8F%91-1.png)
 
 而实际上我们希望*判断用户是否注册*，*注册用户*这两步操作同时进行，如下图所示，Thread1在执行`register(User user)`方法时会将两个操作放在一起执行完，这与数据库事务的原子性理解差不多。
 
-![用户注册并发1 (2).png](images/用户注册并发-2.png)
+![用户注册并发2](https://noteedit.oss-cn-beijing.aliyuncs.com/picGo/%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E5%B9%B6%E5%8F%91-2.png)
 
 
 ### 有序性问题

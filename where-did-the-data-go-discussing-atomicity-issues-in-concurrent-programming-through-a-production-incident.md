@@ -87,8 +87,10 @@ public class ConcurrentPostResult {
 
 从上一节的日志输出可以看到，在执行`postResult()`方法发送数据，实际上会经过一个比较长的网络I/O操作[^注1]。并且执行该操作时，上游系统还在不断推送数据加入到缓存中，如下图所示：
 
+![一次并发问题](https://noteedit.oss-cn-beijing.aliyuncs.com/picGo/0259eb7083fd47dd87d36b589a1cfc6b.png)
 
-![一次并发问题.png](images/0259eb7083fd47dd87d36b589a1cfc6b.png)
+
+
 
 我们进入到`postResult()`方法时只发送缓存中的10条数据，但实际上在这个过程中可能不断有新数据加入到缓存中，这部分数据并没有发送给下游服务。
 
